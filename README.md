@@ -15,5 +15,6 @@ To develop iOS apps using the latest technologies a Macbook will be used for dev
 <h3> 7. Design </h3>
 Logo and Branding
 
+<img src="https://github.com/ludmylaalmeida/Piggy-iOS/blob/main/piggy-branding.png?raw=true" >
 
 
