@@ -6,16 +6,12 @@
 //  Copyright © 2021 ludmyla almeida. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-struct CameraViewController: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct CameraViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        CameraViewController()
+class CameraViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //Do any additional stuff
     }
 }

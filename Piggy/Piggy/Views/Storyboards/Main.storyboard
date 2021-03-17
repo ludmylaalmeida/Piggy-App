@@ -7,6 +7,41 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Welcome View Controller-->
+        <scene sceneID="e9r-gJ-FQi">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeViewController" id="3j7-z6-gqe" customClass="WelcomeViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bta-I3-kOB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" button="YES" image="YES" staticText="YES"/>
+                        </accessibility>
+                        <viewLayoutGuide key="safeArea" id="mej-bd-4hc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D5Z-Hf-P1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1633.3333333333335" y="-2291.5178571428569"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="yIE-Z8-GJI">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" autoresizesArchivedViewToFullSize="NO" wantsFullScreenLayout="YES" interfaceStyle="light" id="vJQ-6M-TRn" customClass="LoginViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Afe-Is-v9Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="dZb-WV-VxY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="p3O-SD-Krs"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dB7-Mq-Fsw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2707" y="-1531"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QIc-xf-3Td">
             <objects>
@@ -29,6 +64,23 @@
             </objects>
             <point key="canvasLocation" x="-1632" y="-737"/>
         </scene>
+        <!--Registration View Controller-->
+        <scene sceneID="a0q-MH-wzg">
+            <objects>
+                <viewController storyboardIdentifier="RegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nas-J7-Agy" customClass="RegistrationViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I5d-HI-6CC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LUX-wk-x29"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8gp-bS-jPx"/>
+                    <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8R-bb-u66" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-671" y="-1531"/>
+        </scene>
         <!--Home-->
         <scene sceneID="32S-th-yH4">
             <objects>
@@ -48,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="-3536" y="209"/>
         </scene>
-        <!--Notification View Controller-->
+        <!--Notifications View Controller-->
         <scene sceneID="P20-Oy-6kd">
             <objects>
-                <viewController id="1I9-6t-D1h" customClass="NotificationViewController" sceneMemberID="viewController">
+                <viewController id="1I9-6t-D1h" customClass="NotificationsViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RRA-ak-gbl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +135,7 @@
         <!--Camera View Controller-->
         <scene sceneID="CEl-iu-5ES">
             <objects>
-                <viewController id="q4i-Jv-XxJ" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController id="q4i-Jv-XxJ" customClass="CameraViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fFF-mQ-0D5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,7 +151,7 @@
         <!--Explore View Controller-->
         <scene sceneID="OYX-a7-k2B">
             <objects>
-                <viewController id="9yM-jS-Gok" customClass="ExploreViewController" sceneMemberID="viewController">
+                <viewController id="9yM-jS-Gok" customClass="ExploreViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XIj-d5-t7H">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +237,7 @@
         <!--Profile View Controller-->
         <scene sceneID="veN-D0-EDX">
             <objects>
-                <viewController id="LuH-Wf-rnW" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController id="LuH-Wf-rnW" customClass="ProfileViewController" customModule="Piggy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z8j-fB-oqh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

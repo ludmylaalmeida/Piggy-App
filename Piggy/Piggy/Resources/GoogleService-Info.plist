@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>929975180263-9stdbme4pb8772dqctcpebbgug6ki5hi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.929975180263-9stdbme4pb8772dqctcpebbgug6ki5hi</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAIdNwHG6oHjUEkcaH-DNqHbBCy1YrKWOo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>929975180263</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Piggy.Piggy</string>
+	<key>PROJECT_ID</key>
+	<string>piggy-acbb6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>piggy-acbb6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:929975180263:ios:a30b2c585566021d0afb42</string>
+</dict>
+</plist>

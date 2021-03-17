@@ -6,16 +6,13 @@
 //  Copyright © 2021 ludmyla almeida. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-struct ExploreViewController: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class ExploreViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //Do any additional stuff
     }
 }
 
-struct ExploreViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreViewController()
-    }
-}
