@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "929975180263",
+    "firebase_url": "https://piggy-acbb6-default-rtdb.firebaseio.com",
+    "project_id": "piggy-acbb6",
+    "storage_bucket": "piggy-acbb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929975180263:android:b75fb094c26e51330afb42",
+        "android_client_info": {
+          "package_name": "com.example.piggy_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929975180263-4q96nec60lh0hsi5ggakcnv8pt0nhs5u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA-daN-X1fhCxJRXVZLmqUmAm2xAMYI84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929975180263-4q96nec60lh0hsi5ggakcnv8pt0nhs5u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "929975180263-9stdbme4pb8772dqctcpebbgug6ki5hi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "Piggy.Piggy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
