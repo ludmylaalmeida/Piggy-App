@@ -1,4 +1,4 @@
-# Piggy-iOS
+# Piggy-App
 
 <h3> 1. Project Overview </h3>
 Piggy is a social media app for investors that will allow users to create a profile where they can interact with other investors, manage their stocks and bitcoins. They will also be able to create groups to talk about investment opportunities, ask for advice, and learn something new. 
