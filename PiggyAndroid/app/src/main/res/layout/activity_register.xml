@@ -86,4 +86,15 @@
         android:backgroundTint="@color/colorPrimary"
         android:layout_below="@+id/layoutRegisterPassword"
         ></com.google.android.material.button.MaterialButton>
+
+    <TextView
+        android:id="@+id/haveAccountLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/proceedBtn"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="21dp"
+        android:text="Already have an account? Login"
+        android:textSize="14sp" />
 </RelativeLayout>

@@ -7,7 +7,7 @@
     tools:context=".ProfileActivity">
 
     <TextView
-        android:id="@+id/createAccountText"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -15,7 +15,7 @@
         android:layout_marginTop="40dp"
         android:text="Profile"
         android:textColor="@color/black"
-        android:textSize="21dp"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:textAlignment="center"/>
 

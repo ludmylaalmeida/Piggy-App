@@ -15,4 +15,10 @@ public class SetUpProfileActivity extends AppCompatActivity {
 //        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items);
 //        (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); // go to previous activity
+        return super.onSupportNavigateUp();
+    }
 }

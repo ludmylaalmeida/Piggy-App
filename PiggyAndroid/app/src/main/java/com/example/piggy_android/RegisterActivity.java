@@ -4,12 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,9 +26,11 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText emailTextField, passwordTextField;
     Button proceedBtn;
+    TextView haveAccountTextView;
 
     // progress bar
-//    ProgressDialog progressDialog;
+    ProgressBar progressBar;
+
 
     private FirebaseAuth mAuth;
 
@@ -43,6 +48,10 @@ public class RegisterActivity extends AppCompatActivity {
         emailTextField = findViewById(R.id.registerEmail);
         passwordTextField = findViewById(R.id.registerPassword);
         proceedBtn = findViewById(R.id.proceedBtn);
+        haveAccountTextView = findViewById(R.id.haveAccountLink);
+
+        progressBar = new ProgressBar(this);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -54,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                progressBar.
                 // input email, password
                 String email = emailTextField.getText().toString().trim();
                 String password = passwordTextField.getText().toString().trim();
@@ -73,11 +83,19 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        // handle user that has account
+        haveAccountTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
+
     }
 
     private void registerUser(String email, String password) {
 
-//        progressDialog.show();
+//        progressBar.
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -103,5 +121,11 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); // go to previous activity
+        return super.onSupportNavigateUp();
     }
 }
