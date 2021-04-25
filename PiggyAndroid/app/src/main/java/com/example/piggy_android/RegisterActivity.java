@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -21,6 +20,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -105,8 +108,31 @@ public class RegisterActivity extends AppCompatActivity {
 //                            progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            // get user info
+                            String email = user.getEmail();
+                            String uid = user.getUid();
+                            // Store user information at realtime database
+                            HashMap<Object, String > hashMap = new HashMap<>();
+                            // put info into hashmap
+                            hashMap.put("email", email);
+                            hashMap.put("uid", uid);
+                            hashMap.put("firstName", "");
+                            hashMap.put("lastName", "");
+                            hashMap.put("dateOfBirth", "");
+                            hashMap.put("profileImage", "");
+                            hashMap.put("gender", "");
+                            hashMap.put("location", "");
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            // path to store user data
+                            DatabaseReference reference = database.getReference("Users");
+                            // put data within hashmap in database
+                            reference.child(uid).setValue(hashMap);
+
+
+
                             Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, ProfileActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, DashboardActivity.class));
                         } else {
 //                            progressDialog.dismiss();
                             // If sign in fails, display a message to the user.
