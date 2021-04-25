@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/lock"
         android:hint="Password"
-        android:layout_below="@id/layoutLoginEmail">
+        android:layout_below="@id/layoutLoginEmail"
+        app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/loginPassword"
             android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:backgroundTint="@color/white"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:layout_marginTop="10dp"
             android:textSize="17sp"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -144,20 +145,20 @@
         android:textColor="@color/black"
         android:layout_below="@+id/dontHaveAccountLink"></com.google.android.material.button.MaterialButton>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginWithFacebookBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log in with Facebook"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:padding="15dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:backgroundTint="@color/white"
-        app:strokeColor="@color/black"
-        app:strokeWidth="1dp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/loginWithGoogleBtn"></com.google.android.material.button.MaterialButton>
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/loginWithFacebookBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Log in with Facebook"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:padding="15dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="18sp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        app:strokeColor="@color/black"-->
+<!--        app:strokeWidth="1dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_below="@+id/loginWithGoogleBtn"></com.google.android.material.button.MaterialButton>-->
 
 </RelativeLayout>

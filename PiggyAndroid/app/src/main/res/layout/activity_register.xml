@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/lock"
         android:hint="Password"
-        android:layout_below="@id/layoutRegisterEmail">
+        android:layout_below="@id/layoutRegisterEmail"
+        app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/registerPassword"
             android:layout_width="match_parent"
@@ -67,7 +68,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:backgroundTint="@color/white"
-            android:inputType="textEmailAddress"
+            android:inputType="textPassword"
             android:layout_marginTop="10dp"
             android:textSize="17sp"></com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -97,4 +98,21 @@
         android:layout_marginTop="21dp"
         android:text="Already have an account? Login"
         android:textSize="14sp" />
+
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/registerWithGoogleBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Log in with Google"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:padding="15dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textSize="18sp"-->
+<!--        app:strokeColor="@color/black"-->
+<!--        app:strokeWidth="1dp"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_below="@+id/haveAccountLink"></com.google.android.material.button.MaterialButton>-->
 </RelativeLayout>
