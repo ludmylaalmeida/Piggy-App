@@ -123,29 +123,33 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            // Sign in success, update UI with the signed-in user's information
-                            // get user info
-                            String email = user.getEmail();
-                            String uid = user.getUid();
-                            // Store user information at realtime database
-                            HashMap<Object, String > hashMap = new HashMap<>();
-                            // put info into hashmap
-                            hashMap.put("email", email);
-                            hashMap.put("uid", uid);
-                            hashMap.put("firstName", "");
-                            hashMap.put("lastName", "");
-                            hashMap.put("dateOfBirth", "");
-                            hashMap.put("profileImage", "");
-                            hashMap.put("gender", "");
-                            hashMap.put("location", "");
+                            //
+                            if (task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                // get user info
+                                String email = user.getEmail();
+                                String uid = user.getUid();
+                                // Store user information at realtime database
+                                HashMap<Object, String > hashMap = new HashMap<>();
+                                // put info into hashmap
+                                hashMap.put("email", email);
+                                hashMap.put("uid", uid);
+                                hashMap.put("firstName", "");
+                                hashMap.put("lastName", "");
+                                hashMap.put("dateOfBirth", "");
+                                hashMap.put("profileImage", "");
+                                hashMap.put("gender", "");
+                                hashMap.put("location", "");
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            // path to store user data
-                            DatabaseReference reference = database.getReference("Users");
-                            // put data within hashmap in database
-                            reference.child(uid).setValue(hashMap);
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                // path to store user data
+                                DatabaseReference reference = database.getReference("Users");
+                                // put data within hashmap in database
+                                reference.child(uid).setValue(hashMap);
+                            }
+
+
+                            Toast.makeText(LoginActivity.this, ""+ user.getEmail(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-//                            finish();
 
                         } else {
                             // sign in failed
