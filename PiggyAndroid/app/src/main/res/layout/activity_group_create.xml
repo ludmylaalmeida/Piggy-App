@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GroupCreateActivity"
+    android:padding="20dp">
+
+    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+        android:id="@+id/groupIcon"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+
+    </com.blogspot.atifsoftwares.circularimageview.CircularImageView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/groupName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Name"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/groupIcon">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/groupNameTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:inputType="text"
+        android:textSize="17sp"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/groupDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Description"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/groupName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/groupDescriptionTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:inputType="text"
+            android:textSize="17sp"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createGroupBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Group"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/groupDescription"
+        ></com.google.android.material.button.MaterialButton>
+
+
+
+
+
+</RelativeLayout>

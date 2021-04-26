@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GroupFragment">
+    tools:context=".fragments.GroupFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/myGroupsTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginTop="40dp"
+        android:text="My Groups"
+        android:textSize="21dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
-</FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Add New Group"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_below="@+id/myGroupsTextView"
+        ></com.google.android.material.button.MaterialButton>
+
+
+
+</RelativeLayout>

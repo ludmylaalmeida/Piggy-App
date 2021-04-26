@@ -11,6 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.piggy_android.fragments.ChatListFragment;
+import com.example.piggy_android.fragments.GroupFragment;
+import com.example.piggy_android.fragments.HomeFragment;
+import com.example.piggy_android.fragments.ProfileFragment;
+import com.example.piggy_android.fragments.UsersFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

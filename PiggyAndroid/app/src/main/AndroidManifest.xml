@@ -12,8 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PiggyAndroid">
-        <activity android:name=".ChatActivity" android:theme="@style/AppTheme"></activity>
-        <activity android:name=".HomeFragment" />
+        <activity android:name=".GroupCreateActivity"></activity>
+        <activity
+            android:name=".ChatActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".fragments.HomeFragment" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SetUpProfileActivity" />
         <activity android:name=".LoginActivity" />

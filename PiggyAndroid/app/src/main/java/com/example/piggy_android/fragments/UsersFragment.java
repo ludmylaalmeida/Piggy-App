@@ -1,4 +1,4 @@
-package com.example.piggy_android;
+package com.example.piggy_android.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.piggy_android.R;
 import com.example.piggy_android.adapters.AdapterUsers;
 import com.example.piggy_android.models.ModelUser;
 import com.google.firebase.auth.FirebaseAuth;

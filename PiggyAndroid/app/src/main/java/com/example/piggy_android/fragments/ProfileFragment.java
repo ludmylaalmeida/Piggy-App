@@ -1,4 +1,4 @@
-package com.example.piggy_android;
+package com.example.piggy_android.fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -12,7 +12,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -27,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.piggy_android.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -64,7 +64,7 @@ public class ProfileFragment extends Fragment {
    ImageView profilePicture;
    TextView nameTextView, genderTextView, ageTextView, locationTextView;
 
-   ProgressDialog pd;
+    ProgressDialog pd;
 
     private static final int CAMERA_REQUEST_CODE = 100;
     private static final int STORAGE_REQUEST_CODE = 200;
@@ -73,10 +73,9 @@ public class ProfileFragment extends Fragment {
     // arrays of permissions to be requested
     String cameraPermissions[];
     String storagePermissions[];
+    Uri image_uri;
 
     FloatingActionButton fab;
-
-    Uri image_uri;
 
     String profilePhoto;
 
