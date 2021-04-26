@@ -128,7 +128,9 @@
         android:text="Don’t have an account? Register"
         android:textSize="14sp" />
 
-    <com.google.android.material.button.MaterialButton
+
+
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/loginWithGoogleBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -136,14 +138,13 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:padding="15dp"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
-        android:layout_below="@+id/dontHaveAccountLink"></com.google.android.material.button.MaterialButton>
+        android:layout_below="@+id/dontHaveAccountLink"></com.google.android.gms.common.SignInButton>
 
 <!--    <com.google.android.material.button.MaterialButton-->
 <!--        android:id="@+id/loginWithFacebookBtn"-->

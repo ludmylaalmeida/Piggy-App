@@ -2,6 +2,7 @@ package com.example.piggy_android;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
@@ -10,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -21,8 +21,6 @@ public class ChatActivity extends AppCompatActivity {
     EditText messageTextView;
     ImageButton sendBtn;
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // init views
         toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         toolbar.setTitle("");
         recyclerView = findViewById(R.id.chatRecyclerView);
         profileImage = findViewById(R.id.profileImage);

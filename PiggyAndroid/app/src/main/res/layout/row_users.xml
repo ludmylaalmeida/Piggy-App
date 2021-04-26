@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/chatAvatarIv"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/user_circle_profile"/>
@@ -31,7 +32,7 @@
                 android:id="@+id/chatUserNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Person Name"/>
+                android:text="Person username" />
 
 
         </LinearLayout>

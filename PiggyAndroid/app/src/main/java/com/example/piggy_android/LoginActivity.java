@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +31,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import io.paperdb.Paper;
 
 import java.util.HashMap;
 
@@ -37,9 +41,11 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
 
     EditText emailTextField, passwordTextField;
-    Button loginBtn, loginWithGoogle;
+    Button loginBtn;
     TextView dontHaveAccountTextView, recoverPassword;
-//    SignInButton loginWithGoogle;
+    SignInButton loginWithGoogle;
+    //work on remember me checkbox
+    private CheckBox checkBoxRememberMe;
 
     // progress bar
 //    ProgressDialog progressDialog;
@@ -65,8 +71,11 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         dontHaveAccountTextView = findViewById(R.id.dontHaveAccountLink);
         recoverPassword = findViewById(R.id.forgotPasswordLink);
+        checkBoxRememberMe = (CheckBox) findViewById(R.id.rememberMeCheckbox);
+        Paper.init(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
         // Build a GoogleSignInClient with the options specified by gso.
@@ -165,27 +174,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void firebaseAuthWithGoogle(String idToken) {
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "" + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-                            finish();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-    }
-
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed(); // go to previous activity
@@ -198,9 +186,16 @@ public class LoginActivity extends AppCompatActivity {
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
+            // The Task returned from this call is always completed, no need to attach a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // google sign in was successful
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                Toast.makeText(LoginActivity.this, "Google sign in failed", Toast.LENGTH_SHORT).show();
+            }
+
             handleSignInResult(task);
         }
     }
@@ -214,6 +209,33 @@ public class LoginActivity extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Toast.makeText(this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information;
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(LoginActivity.this, user.getEmail()+ " Logged In", Toast.LENGTH_SHORT).show();
+                            // go to dashboard
+                            startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

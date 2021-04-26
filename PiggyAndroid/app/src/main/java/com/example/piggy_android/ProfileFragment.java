@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +41,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -47,11 +49,6 @@ import java.util.HashMap;
 import static android.app.Activity.RESULT_OK;
 import static com.google.firebase.database.FirebaseDatabase.getInstance;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileFragment extends Fragment {
 
    FirebaseAuth firebaseAuth;
@@ -61,7 +58,7 @@ public class ProfileFragment extends Fragment {
 
    // storage
     StorageReference storageReference;
-    String storafePath = "Users_Profile_Img/";
+    String storagePath = "Users_Profile_Img/";
 
 
    ImageView profilePicture;
@@ -88,7 +85,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
@@ -112,7 +108,7 @@ public class ProfileFragment extends Fragment {
         // init firebase
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        firebaseDatabase = getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users");
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -126,7 +122,7 @@ public class ProfileFragment extends Fragment {
         genderTextView = view.findViewById(R.id.genderProfileDisplay);
         nameTextView = view.findViewById(R.id.nameProfileDisplay);
         locationTextView = view.findViewById(R.id.locationProfileDisplay);
-        fab = view.findViewById(R.id.editBtn);
+        fab = view.findViewById(R.id.editProfileBtn);
 
         pd = new ProgressDialog(getActivity());
         // get data from database
@@ -166,6 +162,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        // floating action button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +175,7 @@ public class ProfileFragment extends Fragment {
 
     private boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == (PackageManager.PERMISSION_DENIED);
+                == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
@@ -196,7 +193,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void requestCameraPermission() {
-        requestPermissions( storagePermissions, CAMERA_REQUEST_CODE);
+        requestPermissions( cameraPermissions, CAMERA_REQUEST_CODE);
     }
 
     private void showEditProfileDialog() {
@@ -211,6 +208,7 @@ public class ProfileFragment extends Fragment {
                 if (which == 0) {
                     // edit profile picture
                     pd.setMessage("Updating Profile Picture");
+                    profilePhoto = "image";
                     showImagePicDialog();
                     profilePhoto = "image";
                 } else if ( which == 1) {
@@ -250,6 +248,7 @@ public class ProfileFragment extends Fragment {
                         @Override
                         public void onSuccess(Void aVoid) {
                             pd.dismiss();
+                            Toast.makeText(getActivity(), "Updated...", Toast.LENGTH_SHORT).show();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -271,6 +270,7 @@ public class ProfileFragment extends Fragment {
         builder.setNegativeButton("", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
 
             }
         });
@@ -350,15 +350,66 @@ public class ProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         
         if(resultCode == RESULT_OK) {
-            if (requestCode == IMAGE_PICK_CAMERA_CODE) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 image_uri = data.getData();
-
+                uploadProfilePhoto(image_uri);
             }
             if (requestCode == IMAGE_PICK_CAMERA_CODE ) {
+                uploadProfilePhoto(image_uri);
 
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void uploadProfilePhoto(Uri image_uri) {
+        pd.show();
+
+        String filePathAndName = storagePath + "" + profilePicture + "" + user.getUid();
+        StorageReference storageReference2nd = storageReference.child(filePathAndName);
+        storageReference2nd.putFile(image_uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while(!uriTask.isSuccessful());
+                    Uri downloadUri = uriTask.getResult();
+
+                    if(uriTask.isSuccessful()) {
+                        // image uploaded
+                        HashMap<String, Object> results = new HashMap<>();
+                        results.put(profilePhoto, downloadUri.toString());
+
+                        databaseReference.child(user.getUid()).updateChildren(results)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        pd.dismiss();
+                                        Toast.makeText(getActivity(), "Image Updated..." , Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                pd.dismiss();
+                                Toast.makeText(getActivity(), "Error Updating Image..." + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    } else {
+                        pd.dismiss();
+                        Toast.makeText(getActivity(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                    }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                pd.dismiss();
+                Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     private void pickFromGallery() {

@@ -1,9 +1,9 @@
-package com.example.piggy_android;
+package com.example.piggy_android.models;
 
 public class ModelUser {
 
     // use same name as in firebase database
-    String firstName, lastName, email, username, search, image;
+    String firstName, lastName, email, username, search, image, uid;
 
     public ModelUser() {
     }
@@ -15,6 +15,7 @@ public class ModelUser {
         this.username = username;
         this.search = search;
         this.image = image;
+        this.uid = uid;
     }
 
     public String getFirstName() {
@@ -63,5 +64,13 @@ public class ModelUser {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

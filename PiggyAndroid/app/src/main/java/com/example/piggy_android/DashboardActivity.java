@@ -28,9 +28,9 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         // Actionbar
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+//        actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setDisplayShowHomeEnabled(true);
 
         // init
         firebaseAuth = FirebaseAuth.getInstance();
@@ -61,26 +61,33 @@ public class DashboardActivity extends AppCompatActivity {
                     ft1.replace(R.id.container, fragment1, "");
                     ft1.commit();
                     return true;
-                case R.id.groups_nav:
+                case R.id.search_nav:
                     //fragment transition
-                    GroupFragment fragment2 = new GroupFragment();
+                    UsersFragment fragment2 = new UsersFragment();
                     FragmentTransaction ft2 = getSupportFragmentManager().beginTransaction();
                     ft2.replace(R.id.container, fragment2, "");
                     ft2.commit();
                     return true;
-                case R.id.chat_nav:
+                case R.id.groups_nav:
                     //fragment transition
-                    ChatFragment fragment3 = new ChatFragment();
+                    GroupFragment fragment3 = new GroupFragment();
                     FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.container, fragment3, "");
                     ft3.commit();
                     return true;
-                case R.id.profile_nav:
+                case R.id.chat_nav:
                     //fragment transition
-                    ProfileFragment fragment4 = new ProfileFragment();
+                    ChatListFragment fragment4 = new ChatListFragment();
                     FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
                     ft4.replace(R.id.container, fragment4, "");
                     ft4.commit();
+                    return true;
+                case R.id.profile_nav:
+                    //fragment transition
+                    ProfileFragment fragment5 = new ProfileFragment();
+                    FragmentTransaction ft5 = getSupportFragmentManager().beginTransaction();
+                    ft5.replace(R.id.container, fragment5, "");
+                    ft5.commit();
                     return true;
 
 
