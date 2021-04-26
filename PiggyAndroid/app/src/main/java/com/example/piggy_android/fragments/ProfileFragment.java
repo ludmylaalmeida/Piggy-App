@@ -117,7 +117,7 @@ public class ProfileFragment extends Fragment {
 
         // init views
         profilePicture = view.findViewById(R.id.profileImage);
-        ageTextView = view.findViewById(R.id.ageProfileDisplay);
+//        ageTextView = view.findViewById(R.id.ageProfileDisplay);
         genderTextView = view.findViewById(R.id.genderProfileDisplay);
         nameTextView = view.findViewById(R.id.nameProfileDisplay);
         locationTextView = view.findViewById(R.id.locationProfileDisplay);
@@ -133,14 +133,14 @@ public class ProfileFragment extends Fragment {
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String firstName = ""+ ds.child("firstName").getValue();
                     String lastName = ""+ ds.child("lastName").getValue();
-                    String age = ""+ ds.child("age").getValue();
+//                    String age = ""+ ds.child("age").getValue();
                     String gender = ""+ ds.child("gender").getValue();
                     String location = ""+ ds.child("location").getValue();
                     String image = ""+ ds.child("profileImage").getValue();
 
                     // set data
                     nameTextView.setText(firstName + " " +lastName);
-                    ageTextView.setText(age);
+//                    ageTextView.setText(age);
                     genderTextView.setText(gender);
                     locationTextView.setText(location);
                     try {

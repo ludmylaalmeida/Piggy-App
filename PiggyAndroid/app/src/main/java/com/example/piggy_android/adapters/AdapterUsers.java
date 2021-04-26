@@ -65,11 +65,11 @@ public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
         String userImage = userList.get(position).getImage();
         String userFirstName = userList.get(position).getFirstName();
         String userLastName = userList.get(position).getLastName();
-        String userName = userList.get(position).getUsername();
+        String userName = userList.get(position).getUid();
 
         // set data
         holder.nameTextView.setText(userFirstName + " " + userLastName);
-        holder.usernameTextView.setText(userName);
+        holder.usernameTextView.setText("@"+userName);
         try {
             Picasso.get().load(userImage).placeholder(R.drawable.user_circle_profile).into(holder.chatAvatarIv);
         } catch( Exception e) {

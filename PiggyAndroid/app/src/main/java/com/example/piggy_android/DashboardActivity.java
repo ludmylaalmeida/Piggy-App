@@ -25,7 +25,6 @@ public class DashboardActivity extends AppCompatActivity {
     // Firebase Auth
     FirebaseAuth firebaseAuth;
     ActionBar actionBar;
-    TextView usernameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +38,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         // init
         firebaseAuth = FirebaseAuth.getInstance();
-
-        // init view
-        usernameTextView = findViewById(R.id.username);
 
         // bottom navigation
         BottomNavigationView navigationView = findViewById(R.id.bottomNavigation);
@@ -107,7 +103,7 @@ public class DashboardActivity extends AppCompatActivity {
         if (user != null) {
             // user is signed in
             // set username
-            usernameTextView.setText(user.getDisplayName());
+//            usernameTextView.setText(user.getDisplayName());
         } else {
             // user is not signed in, go to main activity
             startActivity(new Intent(DashboardActivity.this, MainActivity.class));

@@ -54,8 +54,6 @@ public class GroupCreateActivity extends AppCompatActivity {
     StorageReference storageReference;
     String storagePath = "Users_Profile_Img/";
 
-    private ActionBar actionBar;
-
     ProgressDialog pd;
 
     private FirebaseAuth firebaseAuth;
@@ -80,11 +78,6 @@ public class GroupCreateActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Users");
         storageReference = FirebaseStorage.getInstance().getReference();
         checkUser();
-
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setTitle("Create Group");
 
         pd = new ProgressDialog(this);
 
@@ -287,7 +280,7 @@ public class GroupCreateActivity extends AppCompatActivity {
     private void checkUser() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
-            actionBar.setSubtitle(user.getEmail());
+//            actionBar.setSubtitle(user.getEmail());
         }
     }
 
