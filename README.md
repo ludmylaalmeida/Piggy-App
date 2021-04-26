@@ -15,7 +15,7 @@ The market research showed that there aren’t any competitors providing the typ
 The first step will be prototyping the app using Sketch to create high-fidelity wireframes. For the UI design standards, I will be using Material.io library by Google. The project will be managed using GitHub issues features.
 <h3> 5. Software </h3>
 I initially planned to developed Piggy with iOS, but since the learning curve was very difficult and I wasn't progressing as fast as I wanted I decided to switch to Android since I'm more familiar with Android Studio using Firebase as a backend.
-<h3> 6. Hardware </h3
+<h3> 6. Hardware </h3>
 To develop Android app using the latest technologies a Macbook will be used for development.
 <h3> 7. Logo and Branding </h3>
 <img src="https://github.com/ludmylaalmeida/Piggy-iOS/blob/main/piggy-branding.png?raw=true" >
