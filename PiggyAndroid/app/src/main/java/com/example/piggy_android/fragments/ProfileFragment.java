@@ -8,10 +8,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -44,6 +46,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
@@ -57,12 +61,11 @@ public class ProfileFragment extends Fragment {
    DatabaseReference databaseReference;
 
    // storage
-    StorageReference storageReference;
-    String storagePath = "Users_Profile_Img/";
-
+   StorageReference storageReference;
+   String storagePath = "Users_Profile_Img/";
 
    ImageView profilePicture;
-   TextView nameTextView, genderTextView, ageTextView, locationTextView;
+   TextView nameTextView, usernameProfileTextView, cityTextView;
 
     ProgressDialog pd;
 
@@ -78,18 +81,6 @@ public class ProfileFragment extends Fragment {
     FloatingActionButton fab;
 
     String profilePhoto;
-
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,41 +108,38 @@ public class ProfileFragment extends Fragment {
 
         // init views
         profilePicture = view.findViewById(R.id.profileImage);
-//        ageTextView = view.findViewById(R.id.ageProfileDisplay);
-        genderTextView = view.findViewById(R.id.genderProfileDisplay);
+        usernameProfileTextView = view.findViewById(R.id.usernameProfile);
         nameTextView = view.findViewById(R.id.nameProfileDisplay);
-        locationTextView = view.findViewById(R.id.locationProfileDisplay);
+        cityTextView = view.findViewById(R.id.locationProfileDisplay);
         fab = view.findViewById(R.id.editProfileBtn);
 
         pd = new ProgressDialog(getActivity());
         // get data from database
         Query query = databaseReference.orderByChild("email").equalTo(user.getEmail());
         query.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // check
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     String firstName = ""+ ds.child("firstName").getValue();
                     String lastName = ""+ ds.child("lastName").getValue();
-//                    String age = ""+ ds.child("age").getValue();
-                    String gender = ""+ ds.child("gender").getValue();
-                    String location = ""+ ds.child("location").getValue();
+                    String username = ""+ ds.child("uid").getValue();
+                    String age = ""+ ds.child("age").getValue();
+                    String city = ""+ ds.child("city").getValue();
                     String image = ""+ ds.child("profileImage").getValue();
+
 
                     // set data
                     nameTextView.setText(firstName + " " +lastName);
-//                    ageTextView.setText(age);
-                    genderTextView.setText(gender);
-                    locationTextView.setText(location);
+                    usernameProfileTextView.setText(username);
+                    cityTextView.setText(city);
                     try {
                         Picasso.get().load(image).into(profilePicture);
 
                     } catch (Exception e) {
                         Picasso.get().load(R.drawable.profile_picture).into(profilePicture);
                     }
-
-
-
                 }
             }
 
@@ -240,8 +228,8 @@ public class ProfileFragment extends Fragment {
                 if (!TextUtils.isEmpty(value)) {
                     pd.show();
                     Toast.makeText(getActivity(), "Please enter " + s, Toast.LENGTH_SHORT).show();
-                    HashMap<String, Object>  result = new HashMap<>();
-                    result.put(s, value);
+                    HashMap<String, Object> result = new HashMap<>();
+                    result.put("firstName", value);
 
                     databaseReference.child(user.getUid()).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

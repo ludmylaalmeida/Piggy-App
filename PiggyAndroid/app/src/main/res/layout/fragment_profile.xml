@@ -24,9 +24,10 @@
                     android:id="@+id/usernameProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="iamalisha"
+                    android:text="username"
                     android:textStyle="bold"
                     android:textAlignment="center"
+                    android:textColor="@color/black"
                     ></TextView>
 
             </LinearLayout>
@@ -58,14 +59,6 @@
                         android:layout_marginStart="5dp"
                         android:textSize="18dp"
                         android:textStyle="bold"></TextView>
-
-                    <TextView
-                        android:id="@+id/genderProfileDisplay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:textSize="16dp"
-                        ></TextView>
 
                     <TextView
                         android:id="@+id/locationProfileDisplay"

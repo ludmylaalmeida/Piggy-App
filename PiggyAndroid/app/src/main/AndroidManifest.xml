@@ -16,7 +16,6 @@
         <activity
             android:name=".ChatActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".fragments.HomeFragment" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".SetUpProfileActivity" />
         <activity android:name=".LoginActivity" />

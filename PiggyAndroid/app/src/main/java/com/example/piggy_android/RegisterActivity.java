@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -32,8 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView haveAccountTextView;
 
     // progress bar
-    ProgressBar progressBar;
-
+    ProgressDialog progressDialog;
 
     private FirebaseAuth mAuth;
 
@@ -53,13 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
         proceedBtn = findViewById(R.id.proceedBtn);
         haveAccountTextView = findViewById(R.id.haveAccountLink);
 
-        progressBar = new ProgressBar(this);
-
-
         mAuth = FirebaseAuth.getInstance();
 
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setMessage("Registering User...");
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registering User...");
 
 
         // handle registration
@@ -98,21 +96,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser(String email, String password) {
 
-//        progressBar.
+        progressDialog.show();
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//                            progressDialog.dismiss();
+                            progressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             // get user info
                             String email = user.getEmail();
                             String uid = user.getUid();
                             // Store user information at realtime database
-                            HashMap<Object, String > hashMap = new HashMap<>();
+                            HashMap<String, Object> hashMap = new HashMap<>();
                             // put info into hashmap
                             hashMap.put("email", email);
                             hashMap.put("uid", uid);
@@ -121,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("dateOfBirth", "");
                             hashMap.put("profileImage", "");
                             hashMap.put("gender", "");
-                            hashMap.put("location", "");
+                            hashMap.put("city", "");
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             // path to store user data
@@ -129,12 +127,10 @@ public class RegisterActivity extends AppCompatActivity {
                             // put data within hashmap in database
                             reference.child(uid).setValue(hashMap);
 
-
-
                             Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, DashboardActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, SetUpProfileActivity.class));
                         } else {
-//                            progressDialog.dismiss();
+                            progressDialog.dismiss();
                             // If sign in fails, display a message to the user.
                             Toast.makeText(RegisterActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -143,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                progressDialog.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(RegisterActivity.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
