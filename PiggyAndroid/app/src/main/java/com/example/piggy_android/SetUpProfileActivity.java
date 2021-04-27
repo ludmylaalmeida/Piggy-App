@@ -43,10 +43,6 @@ public class SetUpProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up_profile);
 
-//        val items = listOf("Material", "Design", "Components", "Android");
-//        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items);
-//        (textField.editText as? AutoCompleteTextView)?.setAdapter(adapter);
-
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
