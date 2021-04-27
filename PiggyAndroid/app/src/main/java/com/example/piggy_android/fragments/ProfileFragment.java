@@ -132,8 +132,8 @@ public class ProfileFragment extends Fragment {
 
                     // set data
                     nameTextView.setText(firstName + " " +lastName);
-                    usernameProfileTextView.setText(username);
-                    cityTextView.setText(city);
+                    usernameProfileTextView.setText("@" +username);
+                    cityTextView.setText(city.substring(0,1).toUpperCase() + city.substring(1));
                     try {
                         Picasso.get().load(image).into(profilePicture);
 
