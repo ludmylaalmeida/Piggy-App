@@ -170,7 +170,6 @@ public class UsersFragment extends Fragment {
                         if (modelUser.getFirstName().toLowerCase().contains(s.toLowerCase()) || modelUser.getUid().toLowerCase().contains(s.toLowerCase())) {
                             userList.add(modelUser);
                         }
-
                     }
 
                     // adapter
