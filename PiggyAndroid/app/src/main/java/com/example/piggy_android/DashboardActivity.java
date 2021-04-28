@@ -32,9 +32,8 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         // Actionbar
-//        actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("");
 
         // init
         firebaseAuth = FirebaseAuth.getInstance();
@@ -90,8 +89,6 @@ public class DashboardActivity extends AppCompatActivity {
                     ft5.replace(R.id.container, fragment5, "");
                     ft5.commit();
                     return true;
-
-
             }
             return false;
         }
@@ -118,19 +115,4 @@ public class DashboardActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if ( id == R.id.action_logout) {
-            firebaseAuth.signOut();
-            checkUserStatus();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

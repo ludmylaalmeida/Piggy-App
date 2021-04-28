@@ -1,5 +1,6 @@
 package com.example.piggy_android;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     // views
     private Button loginButton, registerButton;
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
         // init view
         loginButton = findViewById(R.id.loginBtn);
         registerButton = findViewById(R.id.registerBtn);
+
+        // Actionbar
+        actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         // handle click
