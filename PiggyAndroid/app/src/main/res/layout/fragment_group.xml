@@ -32,6 +32,4 @@
         android:layout_below="@+id/myGroupsTextView"
         ></com.google.android.material.button.MaterialButton>
 
-
-
 </RelativeLayout>
